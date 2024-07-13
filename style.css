@@ -1,62 +1,104 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Courier New", Courier, monospace;
   box-sizing: border-box;
 }
 
 body {
-  background-image: url(foodback.jpg);
-}
-.container {
-  background-color: #fff;
-  width: 90vmin;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-  padding: 80px 50px;
-  border-radius: 10px;
-  box-shadow: rgba(195, 176, 145, 0.4) -5px 5px,
-    rgba(195, 176, 145, 0.3) -10px 10px, rgba(195, 176, 145, 0.2) -15px 15px,
-    rgba(195, 176, 145, 0.1) -20px 20px, rgba(195, 176, 145, 0.05) -25px 25px,
-    rgba(143, 122, 89, 0.05) -30px 30px;
-}
-
-.container h1 {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 20px;
-  color: hwb(31 28% 10%);
+  height: 100vh;
+}
+
+.container {
+  width: 90%;
+  max-width: 800px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #333;
 }
 
 .input-box {
-  width: 100%;
   display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  width: 70%;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 5px 0 0 5px;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px 20px;
+  border: 2px solid #007bff;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin: 16px;
+  height: 300px;
+  width: 300px;
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
   justify-content: space-between;
 }
 
-.input-box input {
-  padding: 5px;
-  width: 70%;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  color: aliceblue;
-  background: linear-gradient(#fff, #7f7e7e),
-    linear-gradient(to right, hwb(31 28% 10%), hsl(31, 31%, 42%));
-  background-origin: padding-box, border-box;
-  background-repeat: no-repeat; /* this is important */
-  border: 5px solid transparent;
+.card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 4px;
 }
 
-.input-box button {
-  padding: 15px 0;
-  width: 25%;
-  background-color: hwb(31 28% 10%);
-  border: none;
-  outline: none;
-  color: #fff;
-  border-radius: 10px;
+.card h2 {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+.card p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+ul {
+  list-style-type: none;
+  overflow: auto;
 }
