@@ -35,7 +35,7 @@ searchButton.addEventListener("click", async () => {
       image.src = recipe.image;
       card.appendChild(image);
 
-      const label = document.createElement("h3");
+      const label = document.createElement("h2");
       label.textContent = recipe.label;
       card.appendChild(label);
 
@@ -43,13 +43,31 @@ searchButton.addEventListener("click", async () => {
       cuisineType.textContent = `Cuisine: ${recipe.cuisineType.join(", ")}`;
       card.appendChild(cuisineType);
 
+      const viewRecipeText = document.createElement("p");
+      viewRecipeText.textContent = "Click anywhere to view recipe";
+      viewRecipeText.style.cursor = "pointer";
+      viewRecipeText.style.color = "#007bff";
+      card.appendChild(viewRecipeText);
+
       const ingredients = document.createElement("ul");
+      ingredients.style.display = "none";
       recipe.ingredientLines.forEach((ingredient) => {
         const li = document.createElement("li");
         li.textContent = ingredient;
         ingredients.appendChild(li);
       });
       card.appendChild(ingredients);
+
+      // Add click event listener to toggle ingredients visibility
+      card.addEventListener("click", () => {
+        if (ingredients.style.display === "none") {
+          ingredients.style.display = "block";
+          viewRecipeText.style.display = "none";
+        } else {
+          ingredients.style.display = "none";
+          viewRecipeText.style.display = "block";
+        }
+      });
 
       cardContainer.appendChild(card);
     });

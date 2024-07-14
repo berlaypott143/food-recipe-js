@@ -10,7 +10,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  margin: 20px;
 }
 
 .container {
@@ -81,8 +82,9 @@ button:hover {
 }
 
 .card img {
-  width: 100px;
-  height: 100px;
+  align-self: center;
+  width: 150px;
+  height: 150px;
   border-radius: 4px;
 }
 
@@ -93,7 +95,7 @@ button:hover {
 }
 
 .card p {
-  margin-top: 10px;
+  margin-top: 2.5px;
   font-size: 14px;
   color: #666;
 }
