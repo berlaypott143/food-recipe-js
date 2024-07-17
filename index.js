@@ -25,6 +25,8 @@ searchButton.addEventListener("click", async () => {
     let data = await response.json();
     console.log(data);
 
+    cardContainer.innerHTML = ""; // Clear previous results
+
     data.hits.slice(0, 3).forEach((hit) => {
       const recipe = hit.recipe;
 
@@ -58,20 +60,70 @@ searchButton.addEventListener("click", async () => {
       });
       card.appendChild(ingredients);
 
-      // Add click event listener to toggle ingredients visibility
+      // Add click event listener to center the card and display ingredients
       card.addEventListener("click", () => {
-        if (ingredients.style.display === "none") {
-          ingredients.style.display = "block";
-          viewRecipeText.style.display = "none";
-        } else {
+        document.querySelectorAll(".card").forEach((c) => {
+          c.classList.remove("centered-card");
+          c.classList.add("background-card");
+          const closeButton = c.querySelector(".close-btn");
+          if (closeButton) {
+            closeButton.remove();
+          }
+          c.querySelector("ul").style.display = "none";
+          c.querySelector("p").style.display = "block";
+        });
+        card.classList.remove("background-card");
+        card.classList.add("centered-card");
+        ingredients.style.display = "block";
+        viewRecipeText.style.display = "none";
+
+        // Create and add the close button
+        const closeButton = document.createElement("button");
+        closeButton.className = "close-btn";
+        closeButton.innerHTML = "&times;";
+        card.appendChild(closeButton);
+
+        // Add click event listener to close button to revert card
+        closeButton.addEventListener("click", (e) => {
+          e.stopPropagation(); // Prevent the card click event from firing
+          card.classList.remove("centered-card");
+          document.querySelectorAll(".card").forEach((c) => {
+            c.classList.remove("background-card");
+          });
+          closeButton.remove(); // Remove the close button
           ingredients.style.display = "none";
           viewRecipeText.style.display = "block";
-        }
+        });
       });
 
       cardContainer.appendChild(card);
     });
   } catch (error) {
     console.error("Error fetching data:", error);
+  }
+});
+
+// Add a click event listener to the container to remove the centered effect
+cardContainer.addEventListener("click", (e) => {
+  if (e.target === cardContainer) {
+    document.querySelectorAll(".card").forEach((c) => {
+      c.classList.remove("centered-card");
+      c.classList.remove("background-card");
+
+      const closeButton = c.querySelector(".close-btn");
+      if (closeButton) {
+        closeButton.remove();
+      }
+
+      const ingredients = c.querySelector("ul");
+      if (ingredients) {
+        ingredients.style.display = "none";
+      }
+
+      const viewRecipeText = c.querySelector("p");
+      if (viewRecipeText) {
+        viewRecipeText.style.display = "block";
+      }
+    });
   }
 });
