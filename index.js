@@ -26,8 +26,12 @@ searchButton.addEventListener("click", async () => {
     console.log(data);
 
     cardContainer.innerHTML = ""; // Clear previous results
+    if (data.hits.length === 0) {
+      cardContainer.innerHTML = `<h4 class="error">Sorry! Couldn't find the food<h4/>`;
+      return;
+    }
 
-    data.hits.slice(0, 3).forEach((hit) => {
+    data.hits.slice(0, 4).forEach((hit) => {
       const recipe = hit.recipe;
 
       const card = document.createElement("div");
@@ -99,6 +103,7 @@ searchButton.addEventListener("click", async () => {
       cardContainer.appendChild(card);
     });
   } catch (error) {
+    cardContainer.innerHTML = `<h4 class="error">Sorry! Couldn't find the food<h4/>`;
     console.error("Error fetching data:", error);
   }
 });
