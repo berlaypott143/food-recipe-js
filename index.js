@@ -1,12 +1,9 @@
-// api id and key
-const AppId = "b9a12d47";
-const AppKey = "b9a5ec8c6a3751d5d515fcef821187af";
-
-//food url
-const baseURL = "https://api.edamam.com/search";
+import config from "./config.js";
 
 const cardContainer = document.getElementById("card-container");
 const searchButton = document.getElementById("search-btn");
+
+console.log(config.AppKey);
 
 searchButton.addEventListener("click", async () => {
   console.log("button is working");
@@ -15,9 +12,9 @@ searchButton.addEventListener("click", async () => {
     const inputFood = document.getElementById("input-food").value;
     console.log(inputFood);
 
-    const url = `${baseURL}?q=${encodeURIComponent(
-      inputFood
-    )}&app_id=${AppId}&app_key=${AppKey}`;
+    const url = `${config.baseURL}?q=${encodeURI(inputFood)}&app_id=${
+      config.AppId
+    }&app_key=${config.AppKey}`;
 
     let response = await fetch(url);
     console.log(url);
